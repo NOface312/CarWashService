@@ -1,0 +1,15 @@
+{% extends 'accounts/wrapper.html' %}
+{% block content %}
+<div class="container">
+    <h1>{{ page_name }}</h1>
+    <a href="{% url 'service_create_url' %}">Create new service</a>
+    {% for service in services %}
+      <h4>Service</h4>
+      {{service.name}}<br>
+      <a href="{% url 'service_edit_url' service.id %}">Edit</a>
+      <a href="{% url 'service_delete_url' service.id %}">Delete</a>
+      <br>
+      <br>
+    {% endfor %}
+</div>
+{% endblock %}

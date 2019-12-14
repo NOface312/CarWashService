@@ -1,0 +1,25 @@
+{% extends 'accounts/wrapper.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>My orders</h1>
+    {% if variable|length %}
+    
+        {% for order in orders %}
+          <h4>Order</h4>
+          {{order.user}}<br>
+          {{order.comapny}}<br>
+          {{order.service}}<br>
+          {{order.order_date}}<br>
+          <a href="{% url 'order_client_edit_url' order.id %}">Edit</a>
+          <a href="{% url 'order_client_delete_url' order.id %}">Delete</a>
+          <br>
+          <br>
+        {% endfor %}
+    {% else %}
+
+        <h2>Now you have no orders, but you can always make a new one, just click on the button</h2>
+        <a href="{% url 'company_choice_url' %}">Make order now!</a>
+    {% endif %}
+</div>
+{% endblock %}

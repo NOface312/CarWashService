@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% if user.is_authenticated%}
+        {{ page_name }}
+      {% else %}
+        Car Wash Service
+      {% endif %}
+    </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'MDB-Free_4.8.11/css/mdb.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css_my_style/style.css' %}" type="text/css">
+  </head>
+  <body>
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
+      {% if user.is_authenticated%}
+        {% if user.firstname == "" %}
+        <a class="navbar-brand" href="#">Car Wash Service</a>
+        {% else %}
+        <a class="navbar-brand" href="#">Welcome, {{user.firstname}}</a>
+        {% endif %}
+      {% else %}
+        <a class="navbar-brand" href="#">Car Wash Service</a>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <!--Home Page-->
+
+          {% if page_name == "Home page"%}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home_url' %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home_url' %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          {% endif %}
+
+          <!--Profile Page-->
+
+          {% if user.type == "Client"%}
+
+              {% if page_name == "Profile page"%}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'profile_client_url' %}">Profile
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile_client_url' %}">Profile
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+              {% endif %}
+
+          {% else %}
+
+              {% if page_name == "Profile page"%}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'profile_company_url' %}">Profile
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile_company_url' %}">Profile
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+              {% endif %}
+
+          {% endif %}
+
+          <!--Orders_Page-->
+
+          {% if user.type == "Client"%}
+
+            {% if page_name == "My Orders page"%}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'client_orders_url' %}">My Orders
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'client_orders_url' %}">My Orders
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% endif %}
+
+          {% else %}
+
+            {% if page_name == "Orders Manager page"%}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'company_orders_url' %}">Orders Control
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'company_orders_url' %}">Orders Control
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% endif %}
+
+          {% endif %}
+
+          <!--Make_Order_Page-->
+          {% if user.type == "Client"%}
+            {% if page_name == "Make Order page"%}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'company_choice_url' %}">Make Order
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'company_choice_url' %}">Make Order
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% endif %}
+          {% else %}
+          {% endif %}
+
+          <!--Service_Manager_Page-->
+          {% if user.type == "Company"%}
+            {% if page_name == "Service List"%}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'service_list_url' %}">Service Manager
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'service_list_url' %}">Service Manager
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li>
+            {% endif %}
+          {% else %}
+          {% endif %}
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fab fa-google-plus-g"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+              aria-labelledby="navbarDropdownMenuLink-333">
+              {% if user.type == "Client"%}
+                <a class="dropdown-item" href="{% url 'service_profile_change_url' %}">Profile settings</a>
+              {% else %}
+                  <a class="dropdown-item" href="{% url 'company_profile_change_url' %}">Profile settings</a>
+              {% endif %}
+
+              {% if user.is_authenticated%}
+                <a class="dropdown-item" href="{% url 'logout_url' %}">Logout</a>
+              {% else %}
+                <a class="dropdown-item" href="{% url 'login_url' %}">Login</a>
+                <a class="dropdown-item" href="{% url 'choice_url' %}">Register</a>
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col">
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <!--<footer class="page-footer font-small cyan darken-2 fixed-bottom">
+      <div class="footer-copyright text-center py-3 h5">
+        You can find as
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 py-2">
+            <div class="mb-2 flex-center">
+              <a class="vk-ic">
+                <i class="fab fa-vk fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="fb-ic">
+                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="tw-ic">
+                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="gplus-ic">
+                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="li-ic">
+                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="ins-ic">
+                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+              </a>
+              <a class="pin-ic">
+                <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="footer-copyright text-center py-3 h6">© 2019 Copyright:
+      <a href="http://miriteam.com/"> MirITeam.com</a>
+    </div>
+  </footer>-->
+  </body>
+</html>

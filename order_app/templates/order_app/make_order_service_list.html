@@ -1,0 +1,14 @@
+{% extends 'accounts/wrapper.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Company Choice</h1>
+    {% for service in services %}
+      <h4>Company</h4>
+      {{service.service_name}}<br>
+      <a href="{% url 'make_order_url' company.id service.id %}">Choice Service</a>
+      <br>
+      <br>
+    {% endfor %}
+</div>
+{% endblock %}

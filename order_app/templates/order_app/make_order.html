@@ -1,0 +1,15 @@
+{% extends 'accounts/wrapper.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Make order</h1>
+  <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        {{ field.label_tag }}
+        {{ field }}<br>
+      {% endfor %}
+      <input type="submit" name="submit" value="submit">
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'accounts/wrapper.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center">Profile Page</h1>
+  <h2>Profile info:</h2>
+  <ul>
+    <li>Name: {{ user.firstname}}</li>
+    <li>Surname: {{ user.secondname }}</li>
+    <li>Email: {{ user.email }}</li>
+    <li>City: {{ user.city }}</li>
+  </ul>
+  <br>
+  <h2>Car info:</h2>
+  <ul>
+    <li>State Number: {{ client.statenumber}}</li>
+    <li>Mark: {{ client.mark }}</li>
+    <li>Model: {{ client.model }}</li>
+    <li>Region: {{ client.region }}</li>
+    <li>Car Type: {{ client.car_type }}</li>
+  </ul>
+
+</div>
+{% endblock %}
