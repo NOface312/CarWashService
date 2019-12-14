@@ -6,6 +6,8 @@
     {% for service in services %}
       <h4>Service</h4>
       {{service.name}}<br>
+      {{service.car_type}}<br>
+      {{service.price}}<br>
       <a href="{% url 'service_edit_url' service.id %}">Edit</a>
       <a href="{% url 'service_delete_url' service.id %}">Delete</a>
       <br>

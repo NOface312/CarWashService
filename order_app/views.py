@@ -92,7 +92,7 @@ class ChoiceServiceView(TemplateView):
 
     def get_context_data(self, **kwargs):
         user = self.request.user
-        page_name = "Choice Company"
+        page_name = "Choice Service"
         services = Service.objects.all()
         company = Company.objects.get(id = self.kwargs['company'])
 
@@ -122,6 +122,7 @@ class MakeOrderView(CreateView):
         page_name = "Order Confirm"
         context['user'] = self.request.user
         context['page_name'] = page_name
+        context['service'] = Service.objects.get(id = self.kwargs['service'])
         return context
 
 

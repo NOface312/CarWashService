@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="text-center">Profile Page</h1>
+  <h1 class="text-center">{{page_name}}</h1>
   <h2>Profile info:</h2>
   <ul>
     <li>Name: {{ user.firstname}}</li>
@@ -11,7 +11,7 @@
     <li>City: {{ user.city }}</li>
   </ul>
   <br>
-  <h2>Car info:</h2>
+  <h2>Company info:</h2>
   <ul>
     <li>Company Name: {{ company.company_name}}</li>
     <li>Location: {{ company.location }}</li>

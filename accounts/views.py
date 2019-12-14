@@ -166,7 +166,7 @@ class ClientDetailChangeView(UpdateView):
         context = super(ClientDetailChangeView, self).get_context_data(*args, **kwargs)
         user = self.request.user
         context['user'] = user
-        context['page_name'] = "Change Account"
+        context['page_name'] = "Profile settings"
         return context
 
 
@@ -198,7 +198,7 @@ class CompanyDetailChangeView(UpdateView):
         context = super(CompanyDetailChangeView, self).get_context_data(*args, **kwargs)
         user = self.request.user
         context['user'] = user
-        context['page_name'] = "Change Account"
+        context['page_name'] = "Profile settings"
         return context
 #---ACCOINT_CHANGE_VIEWS---
 
@@ -207,7 +207,7 @@ class CompanyDetailChangeView(UpdateView):
 @method_decorator(account_type_required(account_type = Company), name='dispatch')
 class ServiceCreateView(CreateView):
     form_class = CreateServiceForm
-    success_url = '/profile/'
+    success_url = '/service/list/'
     template_name = 'accounts/create_service.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -246,7 +246,7 @@ class MyServiceListView(TemplateView):
 class ServiceUpdateView(UpdateView):
     form_class = CreateServiceForm
     model = Service
-    success_url = '/profile/'
+    success_url = '/service/list/'
     template_name = 'accounts/edit_service.html'
     pk_url_kwarg = 'service'
 
@@ -274,7 +274,7 @@ class ServiceUpdateView(UpdateView):
 class ServiceDeleteView(DeleteView):
     form_class = CreateServiceForm
     model = Service
-    success_url = '/profile/'
+    success_url = '/service/list/'
     template_name = 'accounts/delete_service.html'
     pk_url_kwarg = 'service'
 

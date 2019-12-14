@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <h1>My orders</h1>
+    <h1>{{page_name}}</h1>
     {% for order in orders %}
       <h4>Order</h4>
       {{order.user}}<br>

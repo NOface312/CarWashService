@@ -1,7 +1,7 @@
 {% extends 'accounts/wrapper.html' %}
 
 {% block content %}
-    <h1>{{ page_name}}</h1>
+    <h1>{{page_name}}</h1>
     {{ user.firstname }}
     <form method="post">
         {% csrf_token %}

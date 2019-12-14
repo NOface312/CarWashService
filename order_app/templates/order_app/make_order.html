@@ -2,7 +2,13 @@
 
 {% block content %}
 <div class="container">
-  <h1>Make order</h1>
+  <h1>{{page_name}}</h1>
+  <ul>
+      <li>Company - {{service.company}}</li>
+      <li>Service - {{service.name}}</li>
+      <li>Car type - {{service.car_type}}</li>
+      <li>Price - {{service.price}}</li>
+  </ul>
   <form method="post">
       {% csrf_token %}
       {% for field in form %}
